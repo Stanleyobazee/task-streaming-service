@@ -1,0 +1,37 @@
+version: '3.9'
+services:
+
+  storage:
+    container_name: ${DB_HOST}
+    image: mongo:latest
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - ${DB_PORT}:${DB_PORT}
+    volumes:
+      - task_streaming_storage_v:/data/db
+    networks:
+      - worknet
+
+  webapp:
+    container_name: ${SERVER_HOST}
+    depends_on:
+      - storage
+    build: .
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - ${PORT}:${PORT}
+    volumes:
+      - ./:/webapp
+      - task_streaming_webapp_node_modules:/node_modules
+    networks:
+      - worknet
+    command: ["node", "dist/main.js"]
+
+volumes:
+  task_streaming_storage_v:
+  task_streaming_webapp_node_modules:
+
+networks:
+  worknet:
