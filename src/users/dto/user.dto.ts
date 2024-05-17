@@ -3,20 +3,27 @@ import {
   IsNotEmpty,
   IsString,
   IsStrongPassword,
+  Length,
 } from "class-validator";
 import { EmailNotRegistered } from "../validators/email-not-registered";
 
 export class UserDto {
   @IsString()
   @IsNotEmpty()
+  @Length(1, 256)
   firstname: string;
+
   @IsString()
   @IsNotEmpty()
+  @Length(1, 256)
   lastname: string;
+
   @IsString()
   @IsEmail()
+  @Length(1, 256)
   @EmailNotRegistered()
   email: string;
+
   @IsString()
   @IsNotEmpty()
   @IsStrongPassword(
@@ -44,7 +51,9 @@ export class NewUserResponse {
 export class ChangePasswordDto {
   @IsString()
   @IsNotEmpty()
+  @Length(1, 256)
   old_password!: string;
+
   @IsString()
   @IsNotEmpty()
   @IsStrongPassword(

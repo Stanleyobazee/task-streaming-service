@@ -4,7 +4,10 @@ import { PasswordUtils } from "src/utils/PasswordUtil.service";
 
 const userSchemaOptions: SchemaOptions = {
   autoIndex: true,
-  timestamps: true,
+  timestamps: {
+    createdAt: "created_at",
+    updatedAt: "updated_at",
+  },
   virtuals: {
     fullname: {
       get() {
