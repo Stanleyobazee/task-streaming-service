@@ -1,6 +1,6 @@
 import { SchemaOptions, HydratedDocument } from "mongoose";
 import { Prop, SchemaFactory, Schema } from "@nestjs/mongoose";
-import { hashPassword } from "../../utils/password";
+import { PasswordUtils } from "src/utils/PasswordUtil.service";
 
 const userSchemaOptions: SchemaOptions = {
   autoIndex: true,
@@ -30,7 +30,7 @@ export class User {
   @Prop({
     select: false,
     set: (v) => {
-      return hashPassword(v);
+      return new PasswordUtils().hashPassword(v);
     },
   })
   password: string;
