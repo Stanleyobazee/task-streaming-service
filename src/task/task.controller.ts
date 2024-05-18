@@ -20,22 +20,28 @@ import {
 } from "./dto/task.dto";
 import { TaskDocument } from "./entities/task.entity";
 import { PaginationResponseDto } from "../utils/Pagination";
+import { TaskWSGateway } from "./task-ws.gateway";
 
 @Controller("tasks")
 export class TaskController {
   logger: Logger;
-  constructor(private readonly taskService: TaskService) {
+  constructor(
+    private readonly taskService: TaskService,
+    private readonly taskWSGateway: TaskWSGateway,
+  ) {
     this.logger = new Logger("TaskController");
   }
 
   @Post()
-  createTask(
+  async createTask(
     @Body() createTaskDto: CreateTaskDto,
     @Request() req,
   ): Promise<TaskDocument> {
     createTaskDto.user_id = req.user.id;
 
-    return this.taskService.create(createTaskDto);
+    const task = await this.taskService.create(createTaskDto);
+    this.taskWSGateway.emitTask(task);
+    return task;
   }
 
   @Patch("/:task_id")
