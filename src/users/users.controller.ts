@@ -10,8 +10,8 @@ import {
 } from "@nestjs/common";
 import { UsersService } from "./users.service";
 import { ChangePasswordDto, NewUserResponse, UserDto } from "./dto/user.dto";
-import { Public } from "src/auth/jwt-auth.guard";
-import { PasswordUtils } from "src/utils/PasswordUtil.service";
+import { Public } from "../auth/jwt-auth.guard";
+import { PasswordUtils } from "../utils/PasswordUtil.service";
 
 @Controller("users")
 export class UsersController {

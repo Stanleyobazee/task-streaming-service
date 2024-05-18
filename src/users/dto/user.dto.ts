@@ -35,7 +35,7 @@ export class UserDto {
     },
     {
       message:
-        "password length must be above 8 and must have at least 1 lowercase, 1 uppercase, and 1 symbol ",
+        "password length must be above 8 and must have at least 1 lowercase, 1 uppercase, and 1 symbol",
     },
   )
   password: string;
@@ -65,7 +65,7 @@ export class ChangePasswordDto {
     },
     {
       message:
-        "password length must be above 8 and must have at least 1 lowercase, 1 uppercase, and 1 symbol ",
+        "password length must be above 8 and must have at least 1 lowercase, 1 uppercase, and 1 symbol",
     },
   )
   new_password!: string;

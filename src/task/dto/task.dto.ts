@@ -9,7 +9,7 @@ import {
 } from "class-validator";
 import { Transform } from "class-transformer";
 import { TaskIdExists } from "../validators/task-id-exists";
-import { PaginationRequestDto } from "src/utils/Pagination";
+import { PaginationRequestDto } from "../../utils/Pagination";
 import { ToBoolean, ToDate } from "../../utils/validator";
 import { ObjectId } from "mongoose";
 

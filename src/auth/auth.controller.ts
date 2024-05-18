@@ -9,7 +9,7 @@ import { JwtPayload, LoginDto, LoginResponse } from "./dto/auth.dto";
 import { Public } from "./jwt-auth.guard";
 import { UsersService } from "../users/users.service";
 import { JwtService } from "@nestjs/jwt";
-import { PasswordUtils } from "src/utils/PasswordUtil.service";
+import { PasswordUtils } from "../utils/PasswordUtil.service";
 
 @Controller("auth")
 export class AuthController {

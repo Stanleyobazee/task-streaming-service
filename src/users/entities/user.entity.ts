@@ -1,6 +1,6 @@
 import { SchemaOptions, HydratedDocument } from "mongoose";
 import { Prop, SchemaFactory, Schema } from "@nestjs/mongoose";
-import { PasswordUtils } from "src/utils/PasswordUtil.service";
+import { PasswordUtils } from "../../utils/PasswordUtil.service";
 
 const userSchemaOptions: SchemaOptions = {
   autoIndex: true,

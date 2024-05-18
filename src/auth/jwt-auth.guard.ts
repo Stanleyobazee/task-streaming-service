@@ -7,7 +7,10 @@ import {
   UnauthorizedException,
 } from "@nestjs/common";
 import { Reflector } from "@nestjs/core";
-import { AuthService } from "./auth.service";
+import { UsersService } from "../users/users.service";
+import { CurrentUser, JwtPayload } from "./dto/auth.dto";
+import { JwtService } from "@nestjs/jwt";
+import { ConfigService } from "@nestjs/config";
 
 export const IS_PUBLIC_KEY = "isPublic";
 export const Public = () => SetMetadata(IS_PUBLIC_KEY, true);
@@ -19,7 +22,9 @@ export const AdminAuthGuard = () => SetMetadata(IS_ADMIN_KEY, true);
 export class JwtAuthGuard implements CanActivate {
   logger: Logger;
   constructor(
-    private authService: AuthService,
+    private usersService: UsersService,
+    private jwtService: JwtService,
+    private configService: ConfigService,
     private reflector: Reflector,
   ) {
     this.logger = new Logger("JwtAuthGuard");
@@ -41,8 +46,7 @@ export class JwtAuthGuard implements CanActivate {
       throw new UnauthorizedException("no auth token provided");
     }
 
-    request["user"] =
-      await this.authService.getUserFromAuthenticationToken(token);
+    request["user"] = await this.getUserFromAuthenticationToken(token);
     if (!request.user) {
       throw new UnauthorizedException("invalid token");
     }
@@ -53,5 +57,17 @@ export class JwtAuthGuard implements CanActivate {
   private extractTokenFromHeader(request: Request): string | undefined {
     const [type, token] = request.headers["authorization"]?.split(" ") ?? [];
     return type === "Bearer" ? token : undefined;
+  }
+
+  private async getUserFromAuthenticationToken(
+    token: string,
+  ): Promise<CurrentUser | null> {
+    const payload: JwtPayload = this.jwtService.verify(token, {
+      secret: this.configService.get("JWT_SECRET"),
+    });
+
+    const user = await this.usersService.findById(payload.sub);
+
+    return !user ? null : { id: payload.sub };
   }
 }

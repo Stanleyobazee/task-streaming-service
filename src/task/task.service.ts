@@ -8,8 +8,8 @@ import {
 import { InjectModel } from "@nestjs/mongoose";
 import { Task, TaskDocument } from "./entities/task.entity";
 import { Model } from "mongoose";
-import { ObjectIdFromHex } from "src/utils/mongo";
-import { CurrentTime } from "src/utils/date";
+import { ObjectIdFromHex } from "../utils/mongo";
+import { CurrentTime } from "../utils/date";
 
 @Injectable()
 export class TaskService {

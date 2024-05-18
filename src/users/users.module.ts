@@ -5,7 +5,7 @@ import { MongooseModule } from "@nestjs/mongoose";
 import { User, UserSchema } from "./entities/user.entity";
 import { UserIdExistsConstraint } from "./validators/user-id-exists";
 import { EmailNotRegisteredConstraint } from "./validators/email-not-registered";
-import { PasswordUtils } from "src/utils/PasswordUtil.service";
+import { PasswordUtils } from "../utils/PasswordUtil.service";
 
 @Module({
   imports: [

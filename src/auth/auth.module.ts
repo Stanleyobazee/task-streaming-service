@@ -1,10 +1,9 @@
 import { Module } from "@nestjs/common";
-import { AuthService } from "./auth.service";
 import { AuthController } from "./auth.controller";
 import { JwtModule } from "@nestjs/jwt";
 import { ConfigService } from "@nestjs/config";
 import { UsersModule } from "../users/users.module";
-import { PasswordUtils } from "src/utils/PasswordUtil.service";
+import { PasswordUtils } from "../utils/PasswordUtil.service";
 
 @Module({
   imports: [
@@ -18,7 +17,7 @@ import { PasswordUtils } from "src/utils/PasswordUtil.service";
     UsersModule,
   ],
   controllers: [AuthController],
-  providers: [AuthService, PasswordUtils],
-  exports: [AuthService, JwtModule],
+  providers: [PasswordUtils],
+  exports: [JwtModule],
 })
 export class AuthModule {}

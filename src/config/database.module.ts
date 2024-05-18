@@ -1,6 +1,7 @@
 import { Global, Module } from "@nestjs/common";
 import { MongooseModule } from "@nestjs/mongoose";
 import { ConfigService } from "@nestjs/config";
+import { TestDatabaseService } from "./test_db.service";
 
 @Global()
 @Module({
@@ -19,7 +20,7 @@ import { ConfigService } from "@nestjs/config";
       inject: [ConfigService],
     }),
   ],
-  providers: [],
-  exports: [MongooseModule],
+  providers: [TestDatabaseService],
+  exports: [MongooseModule, TestDatabaseService],
 })
 export class DatabaseModule {}
