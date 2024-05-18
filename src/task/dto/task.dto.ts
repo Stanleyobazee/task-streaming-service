@@ -11,7 +11,7 @@ import { Transform } from "class-transformer";
 import { TaskIdExists } from "../validators/task-id-exists";
 import { PaginationRequestDto } from "../../utils/Pagination";
 import { ToBoolean, ToDate } from "../../utils/validator";
-import { ObjectId } from "mongoose";
+import { Types } from "mongoose";
 
 export class CreateTaskDto {
   @IsString()
@@ -24,7 +24,7 @@ export class CreateTaskDto {
   @IsNotEmpty()
   description: string;
 
-  user_id: ObjectId;
+  user_id: Types.ObjectId;
 
   @IsString()
   @IsNotEmpty()

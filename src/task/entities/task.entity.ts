@@ -1,4 +1,4 @@
-import mongoose, { SchemaOptions, HydratedDocument, ObjectId } from "mongoose";
+import mongoose, { SchemaOptions, HydratedDocument, Types } from "mongoose";
 import { Prop, SchemaFactory, Schema } from "@nestjs/mongoose";
 
 const taskSchema: SchemaOptions = {
@@ -12,7 +12,7 @@ const taskSchema: SchemaOptions = {
 @Schema(taskSchema)
 export class Task {
   @Prop({ index: true, type: mongoose.Schema.ObjectId })
-  user_id: ObjectId;
+  user_id: Types.ObjectId;
 
   @Prop()
   title: string;

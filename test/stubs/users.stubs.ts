@@ -1,9 +1,5 @@
 import { User } from "../../src/users/entities/user.entity";
 
-export const usersStubs = (): User[] => {
-  return [userStub1(), userStub2()];
-};
-
 export const userStub1 = (): User => {
   return {
     firstname: "John",
