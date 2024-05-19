@@ -39,7 +39,6 @@ export class TaskWSGateway implements OnGatewayConnection, OnGatewayDisconnect {
       // add all devices with this userId to a Channel
       client.join(this.getUserDevicesChannelName(user_id));
 
-      // TODO: update so that it doesn't broadcast to all users, instead to only people i have conversations with
       client.broadcast.emit("connection", {
         user_id,
         online: true,
@@ -56,7 +55,6 @@ export class TaskWSGateway implements OnGatewayConnection, OnGatewayDisconnect {
     try {
       const userId = this.getUserIdFromSocket(client);
 
-      // TODO: update so that it doesn't broadcast to all users, instead to only people i have conversations with
       client.broadcast.emit("connection", {
         user_id: userId,
         online: false,
