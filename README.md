@@ -9,7 +9,7 @@ This monorepo implements Clean NestJs Architecture with Typescript (Controller, 
 
 ## Postman Documentation
 
-[https://documenter.getpostman.com/view/11044390/2sA3JT4eZD](Task Mgt CRUD API)
+[https://documenter.getpostman.com/view/11044390/2sA3JT4eZD] (Task Mgt CRUD API)
 
 ## App Features
 
@@ -42,12 +42,13 @@ $ yarn run start:dev
 ```
 
 ## Task stream (Websockets)
+### Steps to Test Task Streaming 
 
-# Steps to Test Task Streaming 
 (can't export/pushlish websocket collection in postman)
--- connect the the websocket at the same port as the webserver (localhost:6061)
--- provide Bearer authorization (e.g "Bearer <jwt_token>") token on the "authorization" header field
--- listen/subscribe to events `data_stream`, and `connection`
+
+- connect the the websocket at the same port as the webserver (localhost:6061)
+- provide Bearer authorization (e.g "Bearer <jwt_token>") token on the "authorization" header field
+- listen/subscribe to events `data_stream`, and `connection`
 
 
 ## Test
